@@ -253,7 +253,7 @@ updateIndexGit menv indexName' index gitUrl = do
                    (readProcessNull (Just suDir) menv "git" cloneArgs)
             $logSticky "Fetching package index ..."
             let runFetch = callProcessInheritStderrStdout
-                    (Cmd (Just acfDir) "git" menv ["fetch","--tags","--depth=1"])
+                    (Cmd (Just acfDir) "git" menv ["fetch","--tags"])
             runFetch `C.catch` \(ex :: ProcessExitedUnsuccessfully) -> do
                 -- we failed, so wipe the directory and try again, see #1418
                 $logWarn (T.pack (show ex))
